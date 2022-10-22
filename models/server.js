@@ -3,6 +3,7 @@ import express from 'express';
 
 import cors from 'cors';
 import {router} from '../Routes/usuarios.js'
+import { conectarDB } from '../Database/configDB.js';
 
 class Server{
 
@@ -13,7 +14,12 @@ class Server{
         this.middlewares();
         this.urlUsuarios = '/api/usuarios';
         this.routes();
+        this.DBconection();
 
+    }
+
+    DBconection = async ()=>{
+        await conectarDB();
     }
 
     middlewares(){
